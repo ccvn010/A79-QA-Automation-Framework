@@ -1,1 +1,38 @@
+plugins {
+    id 'java'
+}
 
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Selenium
+    implementation 'org.seleniumhq.selenium:selenium-java:4.15.0'
+    
+    // TestNG
+    testImplementation 'org.testng:testng:7.8.0'
+    
+    // WebDriverManager (optional but helpful)
+    implementation 'io.github.bonigarcia:webdrivermanager:5.6.2'
+}
+
+test {
+    useTestNG() {
+        // Point to your test suite XML files (adjust paths if needed)
+        suites 'src/test/resources/smoke.xml'
+        suites 'src/test/resources/regression.xml'
+    }
+    
+    // Show test output in console
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+        showStandardStreams = true
+    }
+    
+    // Generate HTML reports
+    reports.html.required = true
+}
