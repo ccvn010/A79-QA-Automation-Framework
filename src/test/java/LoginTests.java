@@ -8,29 +8,27 @@ public class LoginTests extends BaseTest {
         // Positive test
         getDriver().get("https://qa.koel.app/");
         LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = loginPage.login("valid@email.com", "validPass");
-        assertTrue(homePage.isUserLoggedIn(), "Login failed with valid credentials");
+        HomePage homePage = loginPage.login("your_email@example.com", "your_password");
+        assertTrue(homePage.isUserLoggedIn(), "Login failed");
     }
 
     @Test
     public void loginEmptyEmail() {
-        // Negative test – empty email
         getDriver().get("https://qa.koel.app/");
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.enterEmail("");
         loginPage.enterPassword("somePass");
         loginPage.clickLoginButton();
-        assertTrue(loginPage.isErrorMessageDisplayed(), "Error message not shown for empty email");
+        assertTrue(loginPage.isErrorDisplayed(), "Error not shown");
     }
 
     @Test
     public void loginEmptyPassword() {
-        // Negative test – empty password
-        // similar implementation
+        // Similar implementation
     }
 
     @Test
     public void loginInvalidCredentials() {
-        // Negative test – wrong email/password
+        // Similar
     }
 }
